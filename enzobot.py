@@ -1,7 +1,11 @@
 import tweepy
 import datetime
-from time import sleep
 import re
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options # apenas pra facilitar a leitura do codigo
+from selenium.webdriver.common.keys import Keys
+import datetime
+import time
 
 auth = tweepy.OAuthHandler("yTN05yKL6x0A6boQJABGRnk57", "oz08RguRf1zzViz7nQSHVBP29MMKhmbYfctl4eFCP2ZqdchCQ7")
 auth.set_access_token("1198082144096194560-wNHbZB5USfvRNP6l2lLfQBjLBYFl8c", "OLT9bISVVLAQrLUN91V22kzHi6I3dbLIGyxJnID39YyLG")
@@ -11,6 +15,9 @@ diferenca = datetime.timedelta(hours=-3)
 fuso_horario = datetime.timezone(diferenca)
 horariomin = datetime.datetime.now().minute
 num = 1
+options = Options()
+options.headless = True # o navegador passa a nao ter interface grafica (ja' que estara' rodando em um EC2)
+browser = webdriver.Chrome(options = options)   
 
 while(True):
     try:
